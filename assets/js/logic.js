@@ -33,8 +33,8 @@ function countdown() {
   var timeInterval = setInterval(function () {
     
     // amount of time the player has
-    timeLeft--;
     timerEl.textContent = timeLeft;
+    timeLeft--;
 
     if(timeLeft === 0){
       clearInterval(timeInterval)
@@ -104,6 +104,15 @@ function quiz(){
 
   function saveScore(){
     var initials = document.getElementById("initials").value;
-    // code to save initials and score to local storage or database
-  }
+    var newScore = {
+        "score" : score,
+        "initials" : initials
+    }
+    // get existing data from local storage
+    var existingScores = JSON.parse(localStorage.getItem("newScore")) || [];
+    // add new score to existing data
+    existingScores.push(newScore);
+    // save updated data to local storage
+    localStorage.setItem("newScore", JSON.stringify(existingScores));
+}
 }
