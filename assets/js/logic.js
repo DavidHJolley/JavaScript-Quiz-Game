@@ -20,6 +20,7 @@ start.addEventListener("click", function(event) {
     }
   });
 
+
 let timeLeft = 30;
 
 function startQuiz(){
@@ -29,14 +30,13 @@ function startQuiz(){
 
 function countdown() {
   // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  timeLeft = 30;
   var timeInterval = setInterval(function () {
     
     // amount of time the player has
     timerEl.textContent = timeLeft;
     timeLeft--;
 
-    if(timeLeft === 0){
+    if(timeLeft <= 0){
       clearInterval(timeInterval)
       gameOver();
     }
@@ -91,6 +91,7 @@ function quiz(){
       timeLeft -= 10;
       if(timeLeft <= 0){
         gameOver();
+        timeLeft = 0;
      }
     }
   }
@@ -100,6 +101,7 @@ function quiz(){
     endScreen.classList.remove('hide');
     finalScore.textContent = score;
     submitBtn.addEventListener("click", saveScore);
+    timeleft = 0;
   }
 
   function saveScore(){

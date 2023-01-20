@@ -19,8 +19,10 @@ function add(){
 
 button.addEventListener("click", function() {
     if (confirm("Are you sure you want to clear the high scores?")) {
-        localStorage.removeItem("scores");
+        localStorage.clear();
+        //console.log(score);
         highScores.innerHTML = "";
     }
 });
+
 //highScores.append("INITIALS - ",obj.initials, " SCORE - ", obj.score);
