@@ -1,10 +1,13 @@
 var start = document.getElementById("start");
+var startScreen = document.getElementById("start-screen");
 var timerEl = document.getElementById('time');
 var questionTitle = document.getElementById('question-title');
 var questionsDiv = document.getElementById('questions');
 var endScreen = document.getElementById('end-screen');
 var finalScore = document.getElementById('final-score');
 var submitBtn = document.getElementById('submit');
+var currentQuestion = 0;
+var timeLeft = 30;
 
 var questionsAndAnswers = {
   "What is the capital of France?": ["Paris", "London", "Rome"],
@@ -13,15 +16,18 @@ var questionsAndAnswers = {
 
 start.addEventListener("click", function(event) {
     var element = event.target;
-  
     if(element.matches("button")){
       console.log("Quiz Started")//startquiz function
       startQuiz() // start the quiz
     }
+    if(startScreen.classList.contains('hide')){
+      startScreen.classList.remove('hide')
+    }
+    else
+    {
+      startScreen.classList.add('hide')
+    }
   });
-
-
-let timeLeft = 30;
 
 function startQuiz(){
     quiz();
@@ -60,7 +66,6 @@ function gameOver(){
 function quiz(){
   var questions = Object.keys(questionsAndAnswers);
   var answers = Object.values(questionsAndAnswers);
-  var currentQuestion = 0;
   var score = 0;
   questionsDiv.classList.remove('hide');
   
@@ -87,12 +92,20 @@ function quiz(){
       } else {
         displayQuestion();
       }
-    } else {
+    }
+    else {
+      currentQuestion++;
       timeLeft -= 10;
-      if(timeLeft <= 0){
+      if(currentQuestion === questions.length){
         gameOver();
-        timeLeft = 0;
-     }
+      } else {
+        displayQuestion();
+      }
+    }
+
+    if(timeLeft <= 0){
+      gameOver();
+      timeLeft = 0;
     }
   }
 
