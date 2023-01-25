@@ -76,9 +76,18 @@ function quiz(){
   
   displayQuestion();
 
-  function displayQuestion(){
+  var correctAnswer;
+
+function displayQuestion(){
     questionTitle.textContent = questions[currentQuestion];
     choices.innerHTML = "";
+    
+    // Store the correct answer
+    correctAnswer = answers[currentQuestion][0];
+    
+    // Shuffle the answers array
+    answers[currentQuestion].sort(() => Math.random() - 0.5);
+    
     for (var i = 0; i < answers[currentQuestion].length; i++){
       var choiceBtn = document.createElement("button");
       choiceBtn.textContent = answers[currentQuestion][i];
@@ -89,7 +98,7 @@ function quiz(){
 
   function checkAnswer(event){
     var chosenAnswer = event.target.textContent;
-    if(chosenAnswer === answers[currentQuestion][0]){
+    if(chosenAnswer === correctAnswer){ 
       currentQuestion++;
       score++;
       if(currentQuestion === questions.length){
