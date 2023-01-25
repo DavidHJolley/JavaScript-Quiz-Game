@@ -10,14 +10,14 @@ var currentQuestion = 0;
 var timeLeft = 60;
 
 var questionsAndAnswers = {
-  "What is the capital of France?": ["Paris", "London", "Rome"],
-  "What is the largest planet in our solar system?": ["Jupiter", "Saturn", "Mars"],
-  "What is the smallest country in the world?": ["Vatican City", "Maldives", "Monaco"],
-  "What is the capital of China?": ["Beijing", "Shanghai", "Hong Kong"],
-  "What is the capital of Australia?": ["Canberra", "Sydney", "Melbourne"],
-  "What is the currency of Japan?": ["Yen", "Dollar", "Euro"],
-  "Which of the following is not an ocean?": ["Antarctic Ocean", "Arctic Ocean", "Sahara Desert"],
-  "Which is the tallest mammal?": ["Giraffe", "Elephant", "Hippopotamus"]
+  "What is the syntax for a for loop in JavaScript?": ["for(var i = 0; i < length; i++)", "while(true)", "if(condition) {"],
+  "What is the syntax for an if statement in Python?": ["if condition:", "for i in range(n):", "function myFunction() {"],
+  "What is the purpose of a variable in programming?": ["To store a value for later use", "To print text on the screen", "To define a function"],
+  "What type of language is JavaScript?": ["Programming Language", "Markup Language", "Styling Language"],
+  "What is the correct syntax for declaring a variable in Java?": ["int myVariable;", "var myVariable;", "let myVariable;"],
+  "What is the purpose of a function in programming?": ["To organize and reuse code", "To print text on the screen", "To store a value for later use"],
+  "What is the syntax for a while loop in C#?": ["while (condition) { }", "for(var i = 0; i < length; i++)", "if(condition) {"],
+  "What is the syntax for a class in Python?": ["class MyClass:", "function MyFunction()", "var myVariable;"],
 };
 
 start.addEventListener("click", function(event) {
