@@ -1,22 +1,28 @@
-var startButton = document.querySelector("#start");
+var score = localStorage.getItem("newScore");
+let obj = JSON.parse(score);
+var highScores = document.getElementById('highscores');
+var button = document.getElementById('clear');
 
-container.addEventListener("click", function(event) {
-    var element = event.target;
-  
-    // TODO: Complete function
-  
-    if(element.matches(startButton)){
-      var state = element.getAttribute("data-state");
-    
-      if (state === "hidden"){
-        element.dataset.state = "show";
-        element.textContent = element.dataset.text;
+add();
+
+function add(){
+    if(Array.isArray(obj)){
+        obj.forEach(function(item) {
+          var node = document.createElement("li");
+          var textnode = document.createTextNode(" INITIALS = " + item.initials + " SCORE = " + item.score);
+          node.appendChild(textnode);
+          highScores.appendChild(node);
+        });
       }
-      else{
-        element.dataset.state = "hidden";
-        element.textContent = null;
-      }
+
+}
+
+button.addEventListener("click", function() {
+    if (confirm("Are you sure you want to clear the high scores?")) {
+        localStorage.clear();
+        //console.log(score);
+        highScores.innerHTML = "";
     }
-  
-  });
-  
+});
+
+//highScores.append("INITIALS - ",obj.initials, " SCORE - ", obj.score);
