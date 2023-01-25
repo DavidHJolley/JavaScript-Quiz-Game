@@ -21,51 +21,38 @@ var questionsAndAnswers = {
 };
 
 start.addEventListener("click", function(event) {
-    var element = event.target;
-    if(element.matches("button")){
-      console.log("Quiz Started")//startquiz function
-      startQuiz() // start the quiz
-    }
-    if(startScreen.classList.contains('hide')){
-      startScreen.classList.remove('hide')
-    }
-    else
-    {
-      startScreen.classList.add('hide')
-    }
+  var element = event.target;
+  if(element.matches("button")){ // check if the clicked element is a button
+  console.log("Quiz Started")// startquiz function
+  startQuiz() // start the quiz
+  }
+  if(startScreen.classList.contains('hide')){
+  startScreen.classList.remove('hide')
+  }
+  else
+  {
+  startScreen.classList.add('hide')
+  }
   });
-
-function startQuiz(){
-    quiz();
-    countdown();
-}
-
-function countdown() {
-  // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  var timeInterval = setInterval(function () {
-    
-    // amount of time the player has
-    timerEl.textContent = timeLeft;
-    timeLeft--;
-
-    if(timeLeft <= 0){
-      gameOver();
-      clearInterval(timeInterval);
-      timeLeft = 0;
-      console.log("OOGA")
-    }
-
-  },1000);
-
-}
+  
+  // This function starts the quiz and calls the countdown function
+  function startQuiz(){
+  quiz();
+  countdown();
+  }
 
 var score = 0;
 
 function gameOver(){
+  // Hide the questions div
   questionsDiv.classList.add('hide');
+  // Unhide the end screen
   endScreen.classList.remove('hide');
+  // Set the final score text to the current score
   finalScore.textContent = score;
+  // Add event listener to submit button that calls the saveScore function
   submitBtn.addEventListener("click", saveScore());
+  // Set timeleft variable to 0
   timeleft = 0;
 }
 
@@ -97,25 +84,33 @@ function displayQuestion(){
   }
 
   function checkAnswer(event){
+    //Grab the chosen answer from the event target's text content
     var chosenAnswer = event.target.textContent;
     if(chosenAnswer === correctAnswer){ 
+      // If the chosen answer is correct
       currentQuestion++;
       score++;
       if(currentQuestion === questions.length){
+        // If all questions have been answered, call the gameOver function
         gameOver();
       } else {
+        // Else, call the displayQuestion function
         displayQuestion();
       }
     }
     else {
+      //If the chosen answer is not the correct answer
       currentQuestion++;
       timeLeft -= 10;
       if(currentQuestion === questions.length){
+        // If all questions have been answered, call the gameOver function
         gameOver();
       } else {
+        // Else, call the displayQuestion function
         displayQuestion();
       }
       if(timeLeft <= 0){
+        // If timeLeft is less than or equal to 0, set timeLeft to 0
         timeLeft = 0;
       }
     }
@@ -125,7 +120,9 @@ function displayQuestion(){
 
 function saveScore(){
   submitBtn.onclick = function(){
+    // Grab the value of the 'initials' element
     var initials = document.getElementById('initials').value;
+    // Create a new object with the current score and the initials
     var newScore = {
         "score" : score,
         "initials" : initials
