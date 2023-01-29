@@ -43,6 +43,25 @@ start.addEventListener("click", function(event) {
 
 var score = 0;
 
+function countdown() {
+  // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+  var timeInterval = setInterval(function () {
+    
+    // amount of time the player has
+    timerEl.textContent = timeLeft;
+    timeLeft--;
+
+    if(timeLeft <= 0){
+      gameOver();
+      clearInterval(timeInterval);
+      timeLeft = 0;
+      console.log("OOGA")
+    }
+
+  },1000);
+
+}
+
 function gameOver(){
   // Hide the questions div
   questionsDiv.classList.add('hide');
