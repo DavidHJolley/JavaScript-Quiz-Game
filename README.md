@@ -13,7 +13,7 @@ This project is a coding quiz game that tests the player's knowledge of coding-r
 
 ![screenshot of webpage](assets/images/screenshot.png)  
 
-## Link
+## Link - https://davidhjolley.github.io/JavaScript-Quiz-Game/index.html
 
 ## Licence 
 
